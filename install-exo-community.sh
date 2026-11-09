@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd -- "$(dirname -- "\${BASH_SOURCE[0]}")" && pwd)"
-CONFIG_HOME="\${XDG_CONFIG_HOME:-$HOME/.config}"
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 IGNIS_DIR="$CONFIG_HOME/ignis"
 MATUGEN_DIR="$CONFIG_HOME/matugen"
 NIRI_CONFIG="$CONFIG_HOME/niri/config.kdl"
@@ -11,8 +11,8 @@ STAMP="$(date +%Y%m%d-%H%M%S)"
 backup_path() {
     local path="$1"
     if [[ -e "$path" ]]; then
-        cp -a -- "$path" "\${path}.backup-\${STAMP}"
-        printf '[exo] backup: %s\n' "\${path}.backup-\${STAMP}"
+        cp -a -- "$path" "${path}.backup-${STAMP}"
+        printf '[exo] backup: %s\n' "${path}.backup-${STAMP}"
     fi
 }
 
