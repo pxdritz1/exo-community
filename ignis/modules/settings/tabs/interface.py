@@ -401,13 +401,14 @@ class ExtraBarCategory(widgets.Box):
                 CategoryLabel("Extra Module Options", "settings"),
                 SettingsRow(
                     title="Workspace Indicator Style",
-                    description="Pick between 3 different Workspace Indicator styles.",
+                    description="Choose how workspace indicators appear.",
                     child=[
                         make_toggle_buttons(
                             [
                                 ("Icons", "windows", "photo"),
                                 ("Numbers", "numbers", "counter_1"),
                                 ("Dots", "dots", "more_horiz"),
+                                ("Pills", "pills", "linear_scale"),
                             ],
                             lambda: self.options.workspaces_style,
                             BarStyles.setWorkspacesStyle,
