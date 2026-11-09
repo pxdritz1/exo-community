@@ -1,0 +1,44 @@
+{
+    "appearance": {
+        "wallcolors": {
+            "wallpaper_path": "/home/px/Pictures/Wallpapers/default.png",
+            "dark_mode": true,
+            "auto_dark": {}
+        }
+    },
+    "interface": {
+        "modules": {
+            "location": {},
+            "visibility": {},
+            "bar_id": {},
+            "options": {}
+        },
+        "bar": {
+            "floating": false,
+            "side": "top",
+            "vertical": false,
+            "density": 1,
+            "separation": false,
+            "centered": false,
+            "bar_background": true,
+            "module_backgrounds": true
+        },
+        "bar2": {
+            "enabled": false,
+            "floating": false,
+            "side": "top",
+            "vertical": false
+        },
+        "notifications": {},
+        "launcher": {},
+        "misc": {}
+    },
+    "services": {
+        "recorder": {},
+        "osd": {
+            "anchor": [
+                "top"
+            ]
+        }
+    }
+}
