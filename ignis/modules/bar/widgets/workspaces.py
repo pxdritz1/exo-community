@@ -148,14 +148,14 @@ class WorkspaceButton(widgets.Button):
         if vertical:
             self._main_content_box.set_vertical(True)
             self.set_halign("center")
-            if style == "dots":
+            if style in ("dots", "pills"):
                 self.set_valign("center")
             else:
                 self.set_valign("fill")
         else:
             self._main_content_box.set_vertical(False)
             self.set_valign("center")
-            if style == "dots":
+            if style in ("dots", "pills"):
                 self.set_halign("center")
             else:
                 self.set_halign("fill")
@@ -238,11 +238,14 @@ class Workspaces(widgets.EventBox):
             self._workspace_box.remove_css_class("dots")
             self._workspace_box.remove_css_class("windows")
             self._workspace_box.remove_css_class("numbers")
+            self._workspace_box.remove_css_class("pills")
 
             if current_style == "dots":
                 self._workspace_box.add_css_class("dots")
             elif current_style == "windows":
                 self._workspace_box.add_css_class("windows")
+            elif current_style == "pills":
+                self._workspace_box.add_css_class("pills")
             elif current_style == "numbers":
                 self._workspace_box.add_css_class("numbers")
 
@@ -329,6 +332,8 @@ class Workspaces(widgets.EventBox):
 
         if style == "windows":
             spacing = 2
+        elif style == "pills":
+            spacing = 4
         else:
             spacing = 5
 
