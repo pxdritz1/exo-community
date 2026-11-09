@@ -123,12 +123,13 @@ path.write_text(text.rstrip() + "\n", encoding="utf-8")
 PY
 
 if [[ -f "$NIRI_CONFIG" ]]; then
-    python3 - "$NIRI_CONFIG" <<'PY'
+    python3 - "$NIRI_CONFIG" "$STAMP" <<'PY'
 import shutil
 import sys
 from pathlib import Path
 
 path = Path(sys.argv[1])
+stamp = sys.argv[2]
 lines = path.read_text(encoding="utf-8").splitlines()
 required = [
     'spawn-at-startup "ignis" "init"',
@@ -136,7 +137,7 @@ required = [
 ]
 missing = [line for line in required if line not in lines]
 if missing:
-    backup = path.with_name(path.name + ".backup-exo")
+    backup = path.with_name(path.name + f".backup-{stamp}")
     if not backup.exists():
         shutil.copy2(path, backup)
     if lines and lines[-1].strip():
