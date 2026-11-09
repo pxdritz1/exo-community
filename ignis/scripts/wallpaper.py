@@ -1,6 +1,7 @@
 import os
 import asyncio
 import json
+import shlex
 from ignis import utils
 from user_settings import user_settings
 from .send_notification import send_notification
@@ -33,13 +34,13 @@ class Wallpaper:
         if colorScheme in schemes:
             asyncio.create_task(
                 utils.exec_sh_async(
-                    f"matugen image -t scheme-{colorScheme} '{path}' -m '{mode}' --prefer saturation"
+                    f"matugen image -t scheme-{colorScheme} {shlex.quote(path)} -m '{mode}' --prefer saturation"
                 )
             )
         else:
             asyncio.create_task(
                 utils.exec_sh_async(
-                    f"matugen image -t scheme-tonal-spot '{path}' -m '{mode}' --prefer saturation"
+                    f"matugen image -t scheme-tonal-spot {shlex.quote(path)} -m '{mode}' --prefer saturation"
                 )
             )
 
@@ -68,13 +69,13 @@ class Wallpaper:
         if colorScheme in schemes:
             asyncio.create_task(
                 utils.exec_sh_async(
-                    f"matugen image -t scheme-{colorScheme} '{path}' -m '{mode}' --prefer saturation"
+                    f"matugen image -t scheme-{colorScheme} {shlex.quote(path)} -m '{mode}' --prefer saturation"
                 )
             )
         else:
             asyncio.create_task(
                 utils.exec_sh_async(
-                    f"matugen image -t scheme-tonal-spot '{path}' -m '{mode}' --prefer saturation"
+                    f"matugen image -t scheme-tonal-spot {shlex.quote(path)} -m '{mode}' --prefer saturation"
                 )
             )
 
@@ -116,7 +117,7 @@ class Wallpaper:
         if colorScheme in schemes:
             asyncio.create_task(
                 utils.exec_sh_async(
-                    f"matugen image -t scheme-{colorScheme} '{path}' -m '{mode}' --prefer saturation"
+                    f"matugen image -t scheme-{colorScheme} {shlex.quote(path)} -m '{mode}' --prefer saturation"
                 )
             )
             asyncio.create_task(
@@ -127,7 +128,7 @@ class Wallpaper:
         else:
             asyncio.create_task(
                 utils.exec_sh_async(
-                    f"matugen image -t scheme-tonal-spot '{path}' -m '{mode}' --prefer saturation"
+                    f"matugen image -t scheme-tonal-spot {shlex.quote(path)} -m '{mode}' --prefer saturation"
                 )
             )
             asyncio.create_task(
@@ -168,12 +169,12 @@ class Wallpaper:
 
             tasks_palette = []
             for scheme in schemes:
-                command = f"matugen image -t scheme-{scheme} '{path}' -m {current_mode} --prefer saturation --json hex --dry-run"
+                command = f"matugen image -t scheme-{scheme} {shlex.quote(path)} -m {current_mode} --prefer saturation --json hex --dry-run"
                 tasks_palette.append(utils.exec_sh_async(command))
 
             tasks_theme = []
             for mode in ["light", "dark"]:
-                command = f"matugen image -t scheme-{current_scheme} '{path}' -m {mode} --prefer saturation --json hex --dry-run"
+                command = f"matugen image -t scheme-{current_scheme} {shlex.quote(path)} -m {mode} --prefer saturation --json hex --dry-run"
                 tasks_theme.append(utils.exec_sh_async(command))
 
             all_results = await asyncio.gather(*(tasks_palette + tasks_theme))
